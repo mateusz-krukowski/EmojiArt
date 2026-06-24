@@ -6,17 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6109CC8A2FEC8850009AEF65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6109CC842FEC8850009AEF65 /* Assets.xcassets */; };
+		6109CC8B2FEC8850009AEF65 /* EmojiArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6109CC852FEC8850009AEF65 /* EmojiArt.swift */; };
+		6109CC8C2FEC8850009AEF65 /* EmojiArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6109CC862FEC8850009AEF65 /* EmojiArtApp.swift */; };
+		6109CC8D2FEC8850009AEF65 /* EmojiArtDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6109CC872FEC8850009AEF65 /* EmojiArtDocument.swift */; };
+		6109CC8E2FEC8850009AEF65 /* EmojiArtDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6109CC882FEC8850009AEF65 /* EmojiArtDocumentView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		6109CC5A2FEB35EC009AEF65 /* EmojiArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6109CC842FEC8850009AEF65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6109CC852FEC8850009AEF65 /* EmojiArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArt.swift; sourceTree = "<group>"; };
+		6109CC862FEC8850009AEF65 /* EmojiArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtApp.swift; sourceTree = "<group>"; };
+		6109CC872FEC8850009AEF65 /* EmojiArtDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocument.swift; sourceTree = "<group>"; };
+		6109CC882FEC8850009AEF65 /* EmojiArtDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocumentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		6109CC5C2FEB35EC009AEF65 /* EmojiArt */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = EmojiArt;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6109CC572FEB35EC009AEF65 /* Frameworks */ = {
@@ -32,7 +37,7 @@
 		6109CC512FEB35EC009AEF65 = {
 			isa = PBXGroup;
 			children = (
-				6109CC5C2FEB35EC009AEF65 /* EmojiArt */,
+				6109CC892FEC8850009AEF65 /* EmojiArt */,
 				6109CC5B2FEB35EC009AEF65 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +48,18 @@
 				6109CC5A2FEB35EC009AEF65 /* EmojiArt.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6109CC892FEC8850009AEF65 /* EmojiArt */ = {
+			isa = PBXGroup;
+			children = (
+				6109CC842FEC8850009AEF65 /* Assets.xcassets */,
+				6109CC852FEC8850009AEF65 /* EmojiArt.swift */,
+				6109CC872FEC8850009AEF65 /* EmojiArtDocument.swift */,
+				6109CC882FEC8850009AEF65 /* EmojiArtDocumentView.swift */,
+				6109CC862FEC8850009AEF65 /* EmojiArtApp.swift */,
+			);
+			path = EmojiArt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +76,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				6109CC5C2FEB35EC009AEF65 /* EmojiArt */,
 			);
 			name = EmojiArt;
 			packageProductDependencies = (
@@ -109,6 +123,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6109CC8A2FEC8850009AEF65 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +134,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6109CC8B2FEC8850009AEF65 /* EmojiArt.swift in Sources */,
+				6109CC8C2FEC8850009AEF65 /* EmojiArtApp.swift in Sources */,
+				6109CC8D2FEC8850009AEF65 /* EmojiArtDocument.swift in Sources */,
+				6109CC8E2FEC8850009AEF65 /* EmojiArtDocumentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

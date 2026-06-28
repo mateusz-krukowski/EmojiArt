@@ -12,7 +12,23 @@ class EmojiArtDocument: ObservableObject {
     
     static let pallete: String = "☁️⭐️🥨🍎🌍⚾️"
     
-    @Published private var emojiArt: EmojiArt = EmojiArt()
+    //@Published //workaround
+    private var emojiArt: EmojiArt = EmojiArt() {
+        willSet {
+            objectWillChange.send()
+        }
+        didSet {
+            print("json = \(emojiArt.json?.utf8 ?? "nil")")
+            UserDefaults.standard.set(emojiArt.json, forKey: EmojiArtDocument.untitled)
+        }
+    }
+    
+    private static let untitled = "EmojiArtDocument.Untitled"
+    
+    init() {
+        emojiArt = EmojiArt(json: UserDefaults.standard.data(forKey: EmojiArtDocument.untitled)) ?? EmojiArt()
+        fetchBackgroundImageData()
+    }
     
     @Published private(set) var backgroundImage: UIImage?
     
@@ -20,11 +36,11 @@ class EmojiArtDocument: ObservableObject {
     
     // MARK: - Intent(s)
     
-    func addEmojil(_ emoji: String, at location: CGPoint, size: CGFloat) {
+    func addEmoji(_ emoji: String, at location: CGPoint, size: CGFloat) {
         emojiArt.addEmoji(emoji, x: Int(location.x), y: Int(location.y), size: Int(size))
     }
     
-    func moveEmojil(_ emoji: EmojiArt.Emoji, by offset: CGSize) {
+    func moveEmoji(_ emoji: EmojiArt.Emoji, by offset: CGSize) {
         if let index = emojiArt.emojis.firstIndex(matching: emoji) {
             emojiArt.emojis[index].x += Int(offset.width)
             emojiArt.emojis[index].y += Int(offset.height)

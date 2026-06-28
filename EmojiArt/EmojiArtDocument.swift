@@ -19,7 +19,7 @@ class EmojiArtDocument: ObservableObject {
     
     init() {
         emojiArt = EmojiArt(json: UserDefaults.standard.data(forKey: EmojiArtDocument.untitled)) ?? EmojiArt()
-        let cancellable = $emojiArt.sink { emojiArt in
+        autosaveCancellable = $emojiArt.sink { emojiArt in
             print("\(emojiArt.json?.utf8 ?? "nil")")
             UserDefaults.standard.set(emojiArt.json, forKey: EmojiArtDocument.untitled)
         }

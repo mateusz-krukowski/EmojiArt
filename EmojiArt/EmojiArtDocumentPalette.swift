@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Combine
+
 
 // MARK: - Palette Extension
 
@@ -99,5 +101,12 @@ extension EmojiArtDocument
             }
         }
         return best?.index
+    }
+}
+extension String {
+    func uniqued() -> String {
+        var seen = Set<Character>()
+        let uniqueChars = self.filter { seen.insert($0).inserted }
+        return String(uniqueChars)
     }
 }

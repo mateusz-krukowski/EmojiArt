@@ -25,8 +25,8 @@ struct PaletteChooser: View {
             Text(self.document.paletteNames[self.chosenPalette] ?? "")
             Image(systemName: "keyboard").imageScale(.large)
                 .onTapGesture { showPaletteEditor = true }
-                .popover(isPresented: $showPaletteEditor) {
-                    PaletteEditor(chosenPalette: $chosenPalette)
+                .sheet(isPresented: $showPaletteEditor) {
+                    PaletteEditor(chosenPalette: $chosenPalette, isShowing: $showPaletteEditor)
                         .environmentObject(self.document)
                         .frame(minWidth: 300, minHeight: 500)
                 }
@@ -40,27 +40,62 @@ struct PaletteEditor: View {
     
     @EnvironmentObject var document: EmojiArtDocument
     @Binding var chosenPalette: String
+    @Binding var isShowing: Bool
     @State private var paletteName: String = ""
+    @State private var emojisToAdd: String = ""
     
     var body: some View {
         VStack {
-            Text("PaletteEditor").font(.headline) // static var of a struct Font of type Font
-                .padding()
-            Divider()
-            TextField("Palette name",text: $paletteName, onEditingChanged: {began in
-                if !began {
-                    self.document.renamePalette(self.chosenPalette, to: self.paletteName)
+            ZStack {
+                Text("PaletteEditor").font(.headline) // static var of a struct Font of type Font
+                    .padding()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        self.isShowing = false
+                    }, label: {
+                        Text("Done") }).padding()
                 }
-            } )
-                .padding()
-            Spacer()
+            }
+            Divider()
+            Form {
+                Section {
+                    TextField("Palette name",text: $paletteName, onEditingChanged: {began in
+                        if !began {
+                            self.document.renamePalette(self.chosenPalette, to: self.paletteName)
+                        }
+                    } )
+                    
+                    
+                    TextField("Add Emoji",text: $emojisToAdd, onEditingChanged: {began in
+                        if !began {
+                            self.chosenPalette = self.document.addEmoji(self.emojisToAdd, toPalette: self.chosenPalette)
+                            self.emojisToAdd = ""
+                        }
+                    } )
+                }
+                Section(header: Text("Remove Emoji")){
+                    Grid(chosenPalette.map { String($0) }, id: \.self) { emoji in
+                        Text(emoji).font(Font.system(size: self.fontSize))
+                                    .onTapGesture {
+                                        self.chosenPalette = self.document.removeEmoji(emoji, fromPalette: self.chosenPalette)
+                            }
+                        }
+                    .frame(height: self.height)
+                }
+                
+            }
         }
         .onAppear(){ self.paletteName = self.document.paletteNames[self.chosenPalette] ?? ""}
     }
+    // MARK: - Drawing Constants
+    
+    var height: CGFloat {
+        CGFloat((chosenPalette.count - 1) / 6) * 70 + 70
+    }
+    let fontSize: CGFloat = 40
+    
 }
-
-
-
 
 struct PaletteChooserPreviewWrapper: View {
     @State private var chosenPalette = ".faces"
